@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace HeistPart2
 {
-  class Program
-  {
-    static void Main(string[] args)
+    class Program
     {
-      List<IRobber> rolodex = new List<IRobber>
+        static void Main(string[] args)
+        {
+            List<IRobber> rolodex = new List<IRobber>
       {
           new Hacker
           {
@@ -65,41 +65,71 @@ namespace HeistPart2
               PercentageCut = 20
           }
       };
+            do
+            {
+                Console.WriteLine($"There are {rolodex.Count} Operatives currently available.");
+                Console.WriteLine("");
 
-      Console.WriteLine($"There are {rolodex.Count} Operatives currently available.");
-      Console.WriteLine("");
+                Console.Write("Please enter a new Operative: ");
+                var newOperativeName = Console.ReadLine();
+                if (String.IsNullOrWhiteSpace(newOperativeName))
+                {
+                    break;
+                }
 
-      Console.Write("Please enter a new Operative: ");
-      var newOperativeName = Console.ReadLine();
+                Console.WriteLine("Please select Operatives Skill:");
+                Console.WriteLine("");
+                Console.WriteLine("1. Hacker (Disables Alarms)");
+                Console.WriteLine("2. Muscle (Incapacitates Guards)");
+                Console.WriteLine("3. Lock Specialist (Cracks Vault)");
+                Console.WriteLine("");
+                var newOperativeSkill = Console.ReadLine();
+                Console.WriteLine("");
 
-      Console.WriteLine("Please select Operatives Skill:");
-      Console.WriteLine("");
-      Console.WriteLine("1. Hacker (Disables Alarms)");
-      Console.WriteLine("2. Muscle (Incapacitates Guards)");
-      Console.WriteLine("3. Lock Specialist (Cracks Vault)");
-      Console.WriteLine("");
-      var newOperativeSkill = Console.ReadLine();
-      Console.WriteLine("");
+                Console.Write("Please enter Operative's Skill Level(1-100): ");
+                var newOperativeSkillLevel = Console.ReadLine();
+                Console.WriteLine("");
 
-      Console.Write("Please enter Operative's Skill Level(1-100): ");
-      var newOperativeSkillLevel = Console.ReadLine();
-      Console.WriteLine("");
+                Console.Write("Please eneter Operative's Percentage Cut: ");
+                var newOperativePercentageCut = Console.ReadLine();
 
-      Console.Write("Please eneter Operative's Percentage Cut: ");
-      var newOperativePercentageCut = Console.ReadLine();
+                switch (newOperativeSkill)
+                {
+                    case "1":
+                        rolodex.Add
+                        (
+                          new Hacker
+                          {
+                              Name = newOperativeName,
+                              SkillLevel = int.Parse(newOperativeSkillLevel),
+                              PercentageCut = int.Parse(newOperativePercentageCut)
+                          });
+                        break;
+                    case "2":
+                        rolodex.Add
+                        (
+                          new Muscle
+                          {
+                              Name = newOperativeName,
+                              SkillLevel = int.Parse(newOperativeSkillLevel),
+                              PercentageCut = int.Parse(newOperativePercentageCut)
+                          });
+                        break;
+                    case "3":
+                        rolodex.Add
+                        (
+                          new LockSpecialist
+                          {
+                              Name = newOperativeName,
+                              SkillLevel = int.Parse(newOperativeSkillLevel),
+                              PercentageCut = int.Parse(newOperativePercentageCut)
+                          });
+                        break;
+                }
+            }
+            while (true);
 
-      switch (newOperativeSkill)
-      {
-        case "1":
-          Hacker newHacker = new Hacker
-          {
-            Name = newOperativeName,
-            SkillLevel = int.Parse(newOperativeSkillLevel),
-            PercentageCut = int.Parse(newOperativePercentageCut)
-          };
-          break;
-      }
+        }
 
     }
-  }
 }
