@@ -13,7 +13,7 @@ namespace HeistPart2
           {
               Name = "Hunter",
               SkillLevel = 45,
-              PercentageCut = 20
+              PercentageCut = 10
           },
 
           new Muscle
@@ -34,7 +34,7 @@ namespace HeistPart2
           {
               Name = "Sharif",
               SkillLevel = 45,
-              PercentageCut = 10
+              PercentageCut = 15
           },
 
           new Hacker
@@ -90,7 +90,7 @@ namespace HeistPart2
         var newOperativeSkillLevel = Console.ReadLine();
         Console.WriteLine("");
 
-        Console.Write("Please enter Operative's Percentage Cut: ");
+        Console.Write("Please enter Operative's Percentage Cut(1-100): ");
         var newOperativePercentageCut = Console.ReadLine();
 
         switch (newOperativeSkill)
@@ -105,7 +105,6 @@ namespace HeistPart2
                 PercentageCut = int.Parse(newOperativePercentageCut)
               });
             break;
-
           case "2":
             rolodex.Add
             (
@@ -116,7 +115,6 @@ namespace HeistPart2
                 PercentageCut = int.Parse(newOperativePercentageCut)
               });
             break;
-
           case "3":
             rolodex.Add
             (
@@ -130,9 +128,52 @@ namespace HeistPart2
         }
       } while (true);
 
+      Bank firstBankOfNss = new Bank
+      {
+        CashOnHand = new Random().Next(50000, 1000001),
 
+        AlarmScore = new Random().Next(0, 101),
+
+        VaultScore = new Random().Next(0, 101),
+
+        SecurityGuardScore = new Random().Next(0, 101)
+
+      };
+
+      Console.WriteLine("");
+      Console.WriteLine("---------------------------------------------");
+
+      if (firstBankOfNss.AlarmScore > firstBankOfNss.VaultScore && firstBankOfNss.AlarmScore > firstBankOfNss.SecurityGuardScore)
+      {
+        Console.WriteLine("Most Secure: Alarm");
+      }
+      else if (firstBankOfNss.VaultScore > firstBankOfNss.AlarmScore && firstBankOfNss.VaultScore > firstBankOfNss.SecurityGuardScore)
+      {
+        Console.WriteLine("Most Secure: Vault");
+      }
+      else if (firstBankOfNss.SecurityGuardScore > firstBankOfNss.AlarmScore && firstBankOfNss.SecurityGuardScore > firstBankOfNss.VaultScore)
+      {
+        Console.WriteLine("Most Secure: Gaurds");
+      }
+
+      Console.WriteLine("");
+
+      if (firstBankOfNss.AlarmScore < firstBankOfNss.VaultScore && firstBankOfNss.AlarmScore < firstBankOfNss.SecurityGuardScore)
+      {
+        Console.WriteLine("Least Secure: Alarm");
+      }
+      else if (firstBankOfNss.VaultScore < firstBankOfNss.AlarmScore && firstBankOfNss.VaultScore < firstBankOfNss.SecurityGuardScore)
+      {
+        Console.WriteLine("Least Secure: Vault");
+      }
+      else if (firstBankOfNss.SecurityGuardScore < firstBankOfNss.AlarmScore && firstBankOfNss.SecurityGuardScore < firstBankOfNss.VaultScore)
+      {
+        Console.WriteLine("Least Secure: Gaurds");
+      }
 
     }
-
   }
 }
+
+
+
