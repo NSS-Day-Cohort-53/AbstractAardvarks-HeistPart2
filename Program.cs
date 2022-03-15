@@ -1,12 +1,105 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HeistPart2
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+      List<IRobber> rolodex = new List<IRobber>
+      {
+          new Hacker
+          {
+              Name = "Hunter",
+              SkillLevel = 45,
+              PercentageCut = 20
+          },
+
+          new Muscle
+          {
+              Name = "Bryce",
+              SkillLevel = 45,
+              PercentageCut = 30
+          },
+
+          new LockSpecialist
+          {
+              Name = "Matthew",
+              SkillLevel = 45,
+              PercentageCut = 40
+          },
+
+          new Muscle
+          {
+              Name = "Sharif",
+              SkillLevel = 45,
+              PercentageCut = 10
+          },
+
+          new Hacker
+          {
+              Name = "Fred",
+              SkillLevel = 45,
+              PercentageCut = 5
+          },
+
+          new Muscle
+          {
+              Name = "Sara",
+              SkillLevel = 45,
+              PercentageCut = 25
+          },
+
+          new LockSpecialist
+          {
+              Name = "Sora",
+              SkillLevel = 45,
+              PercentageCut = 20
+          },
+
+          new LockSpecialist
+          {
+              Name = "Jury",
+              SkillLevel = 45,
+              PercentageCut = 20
+          }
+      };
+
+      Console.WriteLine($"There are {rolodex.Count} Operatives currently available.");
+      Console.WriteLine("");
+
+      Console.Write("Please enter a new Operative: ");
+      var newOperativeName = Console.ReadLine();
+
+      Console.WriteLine("Please select Operatives Skill:");
+      Console.WriteLine("");
+      Console.WriteLine("1. Hacker (Disables Alarms)");
+      Console.WriteLine("2. Muscle (Incapacitates Guards)");
+      Console.WriteLine("3. Lock Specialist (Cracks Vault)");
+      Console.WriteLine("");
+      var newOperativeSkill = Console.ReadLine();
+      Console.WriteLine("");
+
+      Console.Write("Please enter Operative's Skill Level(1-100): ");
+      var newOperativeSkillLevel = Console.ReadLine();
+      Console.WriteLine("");
+
+      Console.Write("Please eneter Operative's Percentage Cut: ");
+      var newOperativePercentageCut = Console.ReadLine();
+
+      switch (newOperativeSkill)
+      {
+        case "1":
+          Hacker newHacker = new Hacker
+          {
+            Name = newOperativeName,
+            SkillLevel = int.Parse(newOperativeSkillLevel),
+            PercentageCut = int.Parse(newOperativePercentageCut)
+          };
+          break;
+      }
+
     }
+  }
 }
