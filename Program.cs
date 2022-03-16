@@ -14,7 +14,7 @@ namespace HeistPart2
           {
               Name = "Hunter",
               SkillLevel = 45,
-              PercentageCut = 90
+              PercentageCut = 17
           },
 
           new Muscle
@@ -174,14 +174,73 @@ namespace HeistPart2
 
       List<IRobber> crew = new List<IRobber>();
 
-      int currentPercentage = crew.Sum(c => c.PercentageCut);
+      Console.WriteLine("");
+      Console.WriteLine("Please Create a Crew.");
+      Console.WriteLine("");
 
-      for(int i = 0; i < rolodex.Count; i ++ )
+      while (true)
       {
-        if (rolodex[i].PercentageCut + currentPercentage <= 100)
+        int currentPercentage = crew.Sum(c => c.PercentageCut);
+        Console.WriteLine($"Current Cut Total: {currentPercentage}");
+        Console.WriteLine("");
+
+        for (int i = 0; i < rolodex.Count; i++)
         {
-          Console.Write($"{rolodex[i].Specialty()}");
+          if (rolodex[i].PercentageCut + currentPercentage <= 100)
+          {
+            Console.WriteLine($"{i + 1}. {rolodex[i].Specialty()}");
+          }
         }
+
+        Console.WriteLine("");
+        string opChoice = Console.ReadLine();
+        Console.WriteLine("");
+
+        if (String.IsNullOrWhiteSpace(opChoice))
+        {
+          break;
+        }
+
+        if (int.TryParse(opChoice, out int choice))
+        {
+          if (choice > 0 && choice <= rolodex.Count)
+          {
+            IRobber crewMember = rolodex[choice - 1];
+            crew.Add(crewMember);
+            rolodex.Remove(crewMember);
+          }
+          else
+          {
+            Console.WriteLine("Select a valid Option.");
+          }
+        }
+        else
+        {
+          Console.WriteLine("Select a valid Option.");
+        }
+      }
+
+      crew.ForEach(c => c.PerformSkill(firstBankOfNss));
+
+      if (firstBankOfNss.IsSecure)
+      {
+        Console.WriteLine("");
+        Console.WriteLine("Heist Failed.");
+      }
+      else
+      {
+        Console.WriteLine("");
+        Console.WriteLine("Heist Successful.");
+        decimal userCut = firstBankOfNss.CashOnHand;
+
+        crew.ForEach(c =>
+        {
+          decimal memberCut = ((c.PercentageCut * .01M) * firstBankOfNss.CashOnHand);
+          userCut -= memberCut;
+          Console.WriteLine($"{c.Name} took home ${memberCut}");
+        });
+
+        Console.WriteLine($"Your cut is ${userCut}.");
       }
 
     }
