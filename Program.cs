@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HeistPart2
 {
@@ -13,7 +14,7 @@ namespace HeistPart2
           {
               Name = "Hunter",
               SkillLevel = 45,
-              PercentageCut = 10
+              PercentageCut = 90
           },
 
           new Muscle
@@ -153,7 +154,7 @@ namespace HeistPart2
       }
       else if (firstBankOfNss.SecurityGuardScore > firstBankOfNss.AlarmScore && firstBankOfNss.SecurityGuardScore > firstBankOfNss.VaultScore)
       {
-        Console.WriteLine("Most Secure: Gaurds");
+        Console.WriteLine("Most Secure: Guards");
       }
 
       Console.WriteLine("");
@@ -168,7 +169,19 @@ namespace HeistPart2
       }
       else if (firstBankOfNss.SecurityGuardScore < firstBankOfNss.AlarmScore && firstBankOfNss.SecurityGuardScore < firstBankOfNss.VaultScore)
       {
-        Console.WriteLine("Least Secure: Gaurds");
+        Console.WriteLine("Least Secure: Guards");
+      }
+
+      List<IRobber> crew = new List<IRobber>();
+
+      int currentPercentage = crew.Sum(c => c.PercentageCut);
+
+      for(int i = 0; i < rolodex.Count; i ++ )
+      {
+        if (rolodex[i].PercentageCut + currentPercentage <= 100)
+        {
+          Console.Write($"{rolodex[i].Specialty()}");
+        }
       }
 
     }

@@ -18,5 +18,9 @@ namespace HeistPart2
         Console.WriteLine($"{Name} has unlocked the vault!");
       }
     }
+    public string Specialty()
+    {
+      return $"{Name} is a lock smith with {SkillLevel} skill level and takes a {PercentageCut}% cut.";
+    }
   }
 }

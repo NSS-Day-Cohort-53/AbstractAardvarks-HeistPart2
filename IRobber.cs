@@ -7,5 +7,7 @@ namespace HeistPart2
         int PercentageCut { get; set; }
 
         void PerformSkill(Bank bank);
+
+        string Specialty();
     }
 }

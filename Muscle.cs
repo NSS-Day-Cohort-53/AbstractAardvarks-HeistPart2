@@ -18,5 +18,9 @@ namespace HeistPart2
         Console.WriteLine($"{Name} has incapacitated the security guard!");
       }
     }
+    public string Specialty()
+    {
+      return $"{Name} is a tough guy with {SkillLevel} skill level and takes a {PercentageCut}% cut.";
+    }
   }
 }
