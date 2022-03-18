@@ -14,56 +14,56 @@ namespace HeistPart2
           {
               Name = "Hunter",
               SkillLevel = 45,
-              PercentageCut = 17
+              PercentageCut = 10
           },
 
           new Muscle
           {
               Name = "Bryce",
-              SkillLevel = 45,
-              PercentageCut = 30
+              SkillLevel = 40,
+              PercentageCut = 10
           },
 
           new LockSpecialist
           {
               Name = "Matthew",
-              SkillLevel = 45,
-              PercentageCut = 40
+              SkillLevel = 50,
+              PercentageCut = 10
           },
 
           new Muscle
           {
               Name = "Sharif",
               SkillLevel = 45,
-              PercentageCut = 15
+              PercentageCut = 10
           },
 
           new Hacker
           {
               Name = "Fred",
-              SkillLevel = 45,
-              PercentageCut = 5
+              SkillLevel = 60,
+              PercentageCut = 10
           },
 
           new Muscle
           {
               Name = "Sara",
               SkillLevel = 45,
-              PercentageCut = 25
+              PercentageCut = 10
           },
 
           new LockSpecialist
           {
               Name = "Sora",
-              SkillLevel = 45,
-              PercentageCut = 20
+              SkillLevel = 62,
+              PercentageCut = 10
           },
 
           new LockSpecialist
           {
               Name = "Jury",
               SkillLevel = 45,
-              PercentageCut = 20
+              PercentageCut = 10
           }
       };
       do
@@ -133,11 +133,11 @@ namespace HeistPart2
       {
         CashOnHand = new Random().Next(50000, 1000001),
 
-        AlarmScore = new Random().Next(0, 101),
+        AlarmScore = new Random().Next(101),
 
-        VaultScore = new Random().Next(0, 101),
+        VaultScore = new Random().Next(101),
 
-        SecurityGuardScore = new Random().Next(0, 101)
+        SecurityGuardScore = new Random().Next(101)
 
       };
 
@@ -231,6 +231,7 @@ namespace HeistPart2
       {
         Console.WriteLine("");
         Console.WriteLine("Heist Successful.");
+        Console.WriteLine("");
         decimal userCut = firstBankOfNss.CashOnHand;
 
         crew.ForEach(c =>

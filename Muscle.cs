@@ -9,11 +9,11 @@ namespace HeistPart2
     public int PercentageCut { get; set; }
     public void PerformSkill(Bank bank)
     {
-      int muscle = bank.SecurityGuardScore - SkillLevel;
+      bank.SecurityGuardScore = bank.SecurityGuardScore - SkillLevel;
 
       Console.WriteLine($"{Name} is beating the security guard. Decreased security {SkillLevel} points.");
 
-      if (muscle <= 0)
+      if (bank.SecurityGuardScore <= 0)
       {
         Console.WriteLine($"{Name} has incapacitated the security guard!");
       }
